@@ -1,8 +1,8 @@
-duration_seconds = 400153
+duration_seconds = 4153
 
 if not duration_seconds // 60:
 	seconds = duration_seconds
-	print('seconds: ',seconds)
+	print(f'{seconds} сек')
 
 else:
 	minutes = duration_seconds // 60
@@ -19,7 +19,7 @@ else:
 			hours = hours % 24
 			print(f'{days} дн {hours} час {minutes} мин {seconds} сек')
 
-#ниже закоменчена тестировочная версия программы
+#ниже закомменчена тестировочная версия программы
 
 '''
 duration_list = [53, 153, 4153, 400153]
@@ -28,7 +28,7 @@ for duration in duration_list:
 	print(f'current duration is {duration} seconds')
 	if not duration // 60:
 		seconds = duration
-		print('seconds: ',seconds)
+		print(f'{seconds} сек')
 
 	else:
 		minutes = duration // 60
