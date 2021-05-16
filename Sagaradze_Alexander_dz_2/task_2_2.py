@@ -1,11 +1,7 @@
 content_list = ['в', '5', 'часов', '17', 'минут', 'температура', 'воздуха', 'была', '+5', 'градусов']
 
 for idx,elem in enumerate(content_list):
-	'''для поиска чисел внутри элемента лучше всего было бы использовать ф-цию isdigit().
-	Иначе можно заморочиться с разделением строки на подстроки, напр, через elem.split(' ') 
-	и проводить дальнейшие действия из моего кода для подстрок new_elem.
 
-	'''
 	if ord(elem[0]) >= 48 and ord(elem[0]) <= 57:
 		if len(elem) == 1:
 			content_list[idx] = '0' + elem[0]
@@ -40,9 +36,8 @@ while j <= len(content_list):
 		if content_list[j] == '"' and content_list[j+2] == '"':
 			content_string += content_list[j] + content_list[j+1] + content_list[j+2] + ' '
 			j += 2
-			print(j)
 		else:
 			content_string += content_list[j] + ' '
 	j += 1
-	
+
 print(content_string)
