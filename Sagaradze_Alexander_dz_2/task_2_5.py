@@ -33,6 +33,7 @@ decreasing_prices = price_list[::-1]
 # print(decreasing_prices)
 
 #D. Пять самых дорогих товаров: 
+print('цена 5-ти самых дорогих товаров: ')
 for price in decreasing_prices[:5]:
 	print(price)
 

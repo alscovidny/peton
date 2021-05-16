@@ -6,9 +6,12 @@ for idx,elem in enumerate(content_list):
 	и проводить дальнейшие действия из моего кода для подстрок new_elem.
 
 	'''
-	if ord(elem[0]) >= 48 and ord(elem[0]) <= 57 and len(elem) == 1:
-		content_list[idx] = '0' + elem[0]
-		'''специфическая реализация. сделано лишь для того, чтобы не создавать еще один список, т.е. выполнить пункт 3)'''
+	if ord(elem[0]) >= 48 and ord(elem[0]) <= 57:
+		if len(elem) == 1:
+			content_list[idx] = '0' + elem[0]
+		elif len(elem) == 2:
+			content_list[idx] = elem
+		'''специфическая реализация. сделано лишь для того, чтобы не создавать еще один список, т.е. выполнить пункт 3'''
 		content_list.insert(idx + 1, '"')
 		content_list.insert(idx + 1, '"')
 
@@ -26,3 +29,20 @@ for idx,elem in enumerate(content_list):
 		content_list[idx-1] = elem
 
 print(content_list)
+
+content_string = ''
+
+j = 0
+
+while j <= len(content_list):
+	
+	if len(content_list) - j > 0:
+		if content_list[j] == '"' and content_list[j+2] == '"':
+			content_string += content_list[j] + content_list[j+1] + content_list[j+2] + ' '
+			j += 2
+			print(j)
+		else:
+			content_string += content_list[j] + ' '
+	j += 1
+	
+print(content_string)
