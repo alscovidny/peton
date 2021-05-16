@@ -8,6 +8,7 @@ for idx,elem in enumerate(content_list):
 	'''
 	if ord(elem[0]) >= 48 and ord(elem[0]) <= 57 and len(elem) == 1:
 		content_list[idx] = '0' + elem[0]
+		'''специфическая реализация. сделано лишь для того, чтобы не создавать еще один список, т.е. выполнить пункт 3)'''
 		content_list.insert(idx + 1, '"')
 		content_list.insert(idx + 1, '"')
 
@@ -25,18 +26,3 @@ for idx,elem in enumerate(content_list):
 		content_list[idx-1] = elem
 
 print(content_list)
-
-#content_list[1] = content_list.['"',elem,'"'] 
-
-'''
-	string_number = ''
-		if symbol == '+':
-			string_number += symbol
-		
-		elif symbol == '-' or ord(symbol) >= 48 and ord(symbol) <= 57:
-			string_number += symbol
-
-'''
-
-	#print(string_number)
-'''or not ord(elem[0]) >= 48 and not ord(elem[0]) <= 57'''
