@@ -27,7 +27,7 @@ def get_jokes(number_jokes,
 		def make_unique_jokes():
 			
 			if number_jokes > max(len(nouns), len(adverbs), len(adjectives)):
-				print(f'выведено максимальное количество шуток: {max(len(nouns), len(adverbs), len(adjectives))}')
+				print(f'выведено максимально возможное количество шуток: {max(len(nouns), len(adverbs), len(adjectives))}')
 		
 			shuffle(nouns)
 			shuffle(adverbs)
@@ -49,6 +49,9 @@ def get_jokes(number_jokes,
 
 help(get_jokes)
 
-jokes = 9
+joke_number = input('Введите желаемое число шуток: ')
 
-get_jokes(jokes)
+if joke_number.isdigit() and int(joke_number) > 0:
+	joke_number = int(joke_number)
+
+get_jokes(joke_number)
