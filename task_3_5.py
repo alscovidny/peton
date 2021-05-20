@@ -49,4 +49,6 @@ def get_jokes(number_jokes,
 
 help(get_jokes)
 
-get_jokes(1)
+jokes = 9
+
+get_jokes(jokes)
