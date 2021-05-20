@@ -1,16 +1,15 @@
 from random import shuffle, choice
 
-def getjokes(number_jokes,
+def get_jokes(number_jokes,
 			 unique_jokes = False):
 	"""
-	Function getJokes returns jokes made from inner lists nouns,
-	adverbs and adjectives.
+	Function get_jokes prints the list jokes made from inner lists
+	nouns, adverbs and adjectives.
 
 	Keyword arguments:
 	number_jokes -- number of jokes desired
-	unique_jokes -- True if unique jokes are needed, 
+	unique_jokes -- True if unique jokes are needed,
 	False otherwise (default False)
-
 	"""
 	if type(number_jokes) == int and number_jokes > 0:
 
@@ -47,6 +46,7 @@ def getjokes(number_jokes,
 	else:
 		print('Ошибка выполнения функции getjokes. Введите целое число > 0')
 
-help(getjokes)
 
-getjokes(2, unique_jokes = True)
+help(get_jokes)
+
+get_jokes(1)
