@@ -1,5 +1,5 @@
 from decimal import Decimal
-from datetime import date
+import datetime
 import requests
 
 def currency_rates(currency,type_data = 'float'):
@@ -24,9 +24,9 @@ def currency_rates(currency,type_data = 'float'):
 			
 			if type_data == 'float':
 				return float(line[idx_first + len('<Value>') : idx_last].replace(',','.')) / nominal, \
-					   date(int(year), int(month), int(day))
+					   datetime.date(int(year), int(month), int(day)).strftime('%Y-%m-%d')
 
 			if type_data == 'decimal':
 				return Decimal(line[idx_first + len('<Value>') : idx_last].replace(',','.')) / nominal, \
-					   date(int(year), int(month), int(day))
+					   datetime.date(int(year), int(month), int(day)).strftime('%Y-%m-%d')
 	return None
