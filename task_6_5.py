@@ -1,6 +1,8 @@
 import sys
 import json
 
+users_name, hobby_name, output_name = map(str, sys.argv[1:4])
+
 flag = False
 
 def hobby_more_than_users(flag):
@@ -20,10 +22,10 @@ def users_generator():
 			if not flag:
 				flag = True
 
-with open("users_hobby_task_6_4.txt",'w', encoding = 'utf-8') as output:
+with open(output_name, 'w', encoding = 'utf-8') as output:
 
-	users = open('users.csv','r', encoding = 'utf-8')
-	hobby = open('hobby.csv','r', encoding = 'utf-8')
+	users = open(users_name, 'r', encoding = 'utf-8')
+	hobby = open(hobby_name, 'r', encoding = 'utf-8')
 
 	hobby_gen = (line.strip('\n') for line in hobby)
 	users_gen = users_generator()
