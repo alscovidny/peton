@@ -1,37 +1,22 @@
-from time import perf_counter
+from collections import Counter
 
-with open("nginx_logs.txt",encoding = 'utf-8') as f:
-	start = perf_counter()
+full_data = []
+users = []
+
+with open("nginx_logs.txt", encoding = 'utf-8') as f:
+
 	for line in f:
 		
 		list_a = line.split()
 
-		print(list_a[0],list_a[5][1:],list_a[6])
+		single_tuple = list_a[0], list_a[5][1:], list_a[6]
+		users.append(list_a[0])
 
 		del list_a
+		full_data.append(single_tuple)
 
-		break
-	print(perf_counter() - start)
-	
-# print(j)
+	cnt = Counter(users)
+	spamer = cnt.most_common(1)
 
-# with open("nginx_logs.txt",encoding = 'utf-8') as f:
-# 	start = perf_counter()
-# 	for line in f:
-		
-# 		a = line.find(' - - ')
-# 		print(line[:a])
-
-
-# 		b = line.find('"', a)
-# 		b1 = line.find(' /', b)
-# 		print(line[b + 1 : b1])
-
-# 		c = line.find(' HTTP', b1)
-# 		print(line[b1 + 2 : c])
-# 		# print(list_a[0],list_a[5][1:],list_a[6])
-
-# 		# del list_a
-
-# 		break
-# 	print(perf_counter() - start)
+	spamer_ip, requests_number = spamer[0]
+	print(f'Spamer detected: ip {spamer_ip}\nRequests number: {requests_number}')
