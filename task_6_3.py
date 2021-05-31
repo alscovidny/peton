@@ -10,25 +10,35 @@ def hobby_more_than_users(flag):
 with open("users_hobby.txt",'w', encoding = 'utf-8') as output:
 
 	users = open('users2.csv','r', encoding = 'utf-8')
-	hobby = open('hobby.csv','r', encoding = 'utf-8')
+	hobbies = open('hobby.csv','r', encoding = 'utf-8')
 		
 	database = {}
 
-	hobby_gen = (line.strip().split(',') for line in hobby)
+	hobby_gen = (line.strip().split(',') for line in hobbies)
+	users_gen = (' '.join(line.strip().split(',')) for line in users)
 
-	for line in users:
+	while True:
 
 		try:
-			elem = next(hobby_gen)
-			database[' '.join(line.strip().split(','))] = elem
-		
+			hobby = next(hobby_gen)
 		except StopIteration:
-			database[' '.join(line.strip().split(','))] = None
-			if not flag:
+			hobby = None
+
+		try:
+			user = next(users_gen)
+		except StopIteration:
+
+			try:
+				next(hobby_gen)
 				flag = True
+			except StopIteration:
+				pass
+			break
+
+		database[user] = hobby
 	
 	users.close()
-	hobby.close()	
+	hobbies.close()	
 	
 	json.dump(database, output, ensure_ascii = False, indent = 4)
 	hobby_more_than_users(flag)

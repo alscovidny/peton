@@ -1,34 +1,18 @@
 import sys
-import json
 
-flag = False
+with open("users_hobby_task_6_4.txt",'w+', encoding = 'utf-8') as output:
 
-def hobby_more_than_users(flag):
-	if flag:
-		sys.exit(1)
+	with open('users2.csv','r', encoding = 'utf-8') as users_file:
+		with open('hobby.csv','r', encoding = 'utf-8') as hobbies_file:
 
-def users_generator():
-
-	global flag
-	for line in users:
-
-		try:
-			yield line.strip() + ': ' + next(hobby_gen) + '\n'
-
-		except StopIteration:
-			yield line.strip() + ': ' + 'None' + '\n'
-			if not flag:
-				flag = True
-
-with open("users_hobby_task_6_4.txt",'w', encoding = 'utf-8') as output:
-
-	users = open('users.csv','r', encoding = 'utf-8')
-	hobby = open('hobby.csv','r', encoding = 'utf-8')
-
-	hobby_gen = (line.strip('\n') for line in hobby)
-	users_gen = users_generator()
-
-	output.writelines(users_gen)
-
-	users.close()
-	hobby.close()
+			for user in users_file:
+				output.write(user.strip('\n') + ': ')
+				try:
+					output.write(next(hobbies_file).strip('\n') + '\n')
+				except StopIteration:
+					output.write('None' + '\n')
+			try:
+				next(hobbies_file)
+				sys.exit(1)
+			except StopIteration:
+				pass
