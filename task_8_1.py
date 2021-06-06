@@ -2,21 +2,13 @@ import re
 
 def parse_email(email):
 
-	name = re.compile(r"(?P<username>.*(?=@))")
+	info = re.compile(r"(?P<username>.*)@(?P<domain>.+\..+)")
+	try:
+		parsed_dict = info.match(email).groupdict()
+	except AttributeError:
+		msg = f'wrong e-mail: {email}'
+		raise ValueError (msg)
 
-	domain = re.compile(r"(?P<domain>(?<=@).+\..+)")
+	return parsed_dict
 
-	# name = re.compile(r'.*(?=@)', re.IGNORECASE)
-	# domain = re.compile(r'(?<=@).+\..+', re.IGNORECASE)
-
-	parced_name = name.match(email).group()
-
-	if not domain.search(email):
-		raise ValueError (f'wrong e-mail: {email}')
-	
-	else:
-		parced_domain = domain.search(email).group()
-
-	return parced_name, parced_domain
-
-print(parse_email('yandex@mail.com'))
+print(parse_email(str(input('введите e-mail: '))))
