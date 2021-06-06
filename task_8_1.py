@@ -3,6 +3,7 @@ import re
 def parse_email(email):
 
 	info = re.compile(r"(?P<username>.*)@(?P<domain>.+\..+)")
+
 	try:
 		parsed_dict = info.match(email).groupdict()
 	except AttributeError:
