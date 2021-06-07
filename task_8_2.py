@@ -15,7 +15,11 @@ def parse_from_nginx():
 
 		for line in f:
 			parsed_row = pattern.search(line).groups()
-			print(parsed_row)
+			yield parsed_row
 
 parse_test_string()
-# parse_from_nginx()
+
+parse_nginx = parse_from_nginx()
+
+print(next(parse_nginx))
+print(next(parse_nginx))
