@@ -1,40 +1,25 @@
 import re
 
 class NotNumberError(Exception):
-	pass
+	def __init__(self, txt = ''):
+		self.txt = txt
 
-class OnlyNumbers():
-
-	@staticmethod
-	def is_not_a_number(string):
-		for x in ''.join(string.split()):
-			if not x.isdigit() and x!='.':
-				raise NotNumberError
-
-	@staticmethod
-	def find_numbers(string):
-		try:
-			OnlyNumbers.is_not_a_number(string)
-		except NotNumberError:
-			print('found chars in input')
-
-		numbers = re.findall(r'(\d+(?:\.\d+)?)', string)
-		return list(map(lambda x : float(x) if '.' in x else int(x), numbers))
-
-	def __init__(self):
-		self.only_numbers = []
-		while 1:
-			a = input()
-			if 'stop' in a:
-				a = a[ : a.rfind('stop')]
-				self.only_numbers.extend(OnlyNumbers.find_numbers(a))
+def only_numbers():
+	numbers = []
+	flag = True
+	while flag:
+		for elem in input().split():
+			if elem == 'stop':
+				flag = False
 				break
-			self.only_numbers.extend(OnlyNumbers.find_numbers(a))
+			try:
+				if re.search(r'(\d+(?:\.\d+)?)', elem):
+					numbers.append(float(elem) if '.' in elem else int(elem))
+				else:
+					raise NotNumberError ('mistake')
+			except NotNumberError:
+				print(f'{elem} не является числом, в список не добавлено')
+	return numbers
 
-	def __str__(self):
-		return self.only_numbers
-
-list_numbers = OnlyNumbers()
-
-print(list_numbers.only_numbers)
+print(only_numbers())
 		
