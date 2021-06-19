@@ -18,6 +18,9 @@ class Warehouse:
 					self.full_database[type(j).__name__].remove(elem)
 					self.database[type(j).__name__] -= 1
 
+	def __str__(self):
+		string = ''
+		return '\n'.join([f'{key}: {list(map(lambda x : x.name, value))}' for key, value in self.full_database.items()])
 
 class OfficeEquipment:
 
@@ -34,8 +37,6 @@ class OfficeEquipment:
 		except ValueError:
 			print(f'{type(self).__name__} {self.name} incorrect weight input: set default weight = 0')
 			self.weight = 0
-
-
 
 	def setprice(self, price):
 		self.price = price
@@ -62,11 +63,10 @@ class Scanner(OfficeEquipment):
 		super().__init__(name, price, weight)
 		self.resolution = resolution
 
-
 mistake = Xerox('adssa', 'sadas', 'saasda')
 print(mistake.price)
 printers = Printer('Brother DCP 1510r', price = 8000, weight = 5), Printer('Brother DCP 1512r', price = 9000, weight = 5)
-xeroxes = Xerox('Genius', price = 4000, weight = 4.8)
+xeroxes = Xerox('Canon FC108', price = 4000, weight = 4.8)
 scanners = Scanner('Genius Scanner', price = 2000, weight = 2.5)
 
 varshavka = Warehouse()
@@ -75,7 +75,5 @@ varshavka.receive(*printers, xeroxes, scanners)
 print(varshavka.database)
 varshavka.shipping(*printers)
 print(varshavka.database)
+print(varshavka)
 
-# print(varshavka.database)
-# print(list(map(lambda x : x.name, varshavka.full_database['Printer'])))
-# print(varshavka.items)
