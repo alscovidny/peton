@@ -1,39 +1,12 @@
 class ExceptDivision(Exception):
+	def __init__(self, txt):
+		self.txt = txt
 
-	def __init__(self, value = 0):
-		self.value = value
+b = 0
+a = 10
 
-	def __truediv__(self, divider):
-		try:
-			return self.value / divider
-		except ZeroDivisionError:
-			print(f'Can not divide by zero')
-			return None
-
-	def __floordiv__(self, divider):
-		try:
-			return self.value // divider
-		except ZeroDivisionError:
-			print(f'Can not divide by zero')
-			return None
-
-	def __mod__(self, divider):
-		try:
-			return self.value // divider
-		except ZeroDivisionError:
-			print(f'Can not divide by zero')
-			return None
-
-	def __itruediv__(self, divider):
-		return ExceptDivision.__truediv__(self, divider)
-
-	def __ifloordiv__(self, divider):
-		return ExceptDivision.__floordiv__(self, divider)
-
-	def __ifloordiv__(self, divider):
-		return ExceptDivision.__floordiv__(self, divider)
-
-a = ExceptDivision(-2)
-c = 2
-
-a //= c
+try:
+	if b == 0:
+		raise ExceptDivision ('dividing by zero')
+	print(a/b)
+except ExceptDivision: print('can not divide by zero')
