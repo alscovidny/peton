@@ -13,7 +13,7 @@ def only_numbers():
 				flag = False
 				break
 			try:
-				if re.search(r'(\d+(?:\.\d+)?)', elem):
+				if re.search(r'([+-]?\d+(?:\.\d+)?)', elem):
 					numbers.append(float(elem) if '.' in elem else int(elem))
 				else:
 					raise NotNumberError ('mistake')
