@@ -76,4 +76,3 @@ print(varshavka.database)
 varshavka.shipping(*printers)
 print(varshavka.database)
 print(varshavka)
-

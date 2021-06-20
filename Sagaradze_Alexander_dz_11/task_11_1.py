@@ -20,9 +20,12 @@ class Date:
 			if month not in range(1,13):
 				print(f'incorrect month: {month}')
 				sys.exit(2)
+			if year < 0:
+				print(f'incorrect year: {year}')
+				sys.exit(3)
 		except AttributeError:
 			print('incorrect date')
-			sys.exit(3)
+			sys.exit(4)
 		return day, month, year
 
 	@classmethod
