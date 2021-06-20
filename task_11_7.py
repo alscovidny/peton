@@ -1,21 +1,8 @@
-import re
-
 class Complex:
 
-	def __init__(self, string = '0+0i'):
-		if string.split == 'i':
-			self.imaginary = 1
-		else:
-			parse = re.compile(r'(?P<real>[+-]? ?\d+(?:\.\d+)?^i)? ?((?P<imaginary>[+-]? ?\d+(?:\.\d+)?)i)?')
-			try:
-				self.real = float(re.search(parse, string).group('real').replace(' ', ''))
-			except AttributeError:
-				self.real = 0
-			try:
-				self.imaginary = float(re.search(parse, string).group('imaginary').replace(' ', ''))
-			except AttributeError:
-				self.imaginary = 0
-
+	def __init__(self, real = 0, imaginary = 0):
+		self.real = real
+		self.imaginary = imaginary
 
 	def __add__(self, other):
 		self.real = self.real + other.real
@@ -49,16 +36,26 @@ class Complex:
 		return self
 
 	def __truediv__(self, other):
-		return __mul__(self, inverse(other))
+		return Complex.__mul__(self, Complex.inverse(other))
 
-a = Complex('1+2i')
-b = Complex('2+1i')
+	def __itruediv__(self, other):
+		return Complex.__mul__(self, Complex.inverse(other))
 
-c = Complex('1')
-d = Complex('  i  ')
+	def __rtruediv__(self, other):
+		return Complex.__mul__(self, Complex.inverse(other))
+
+a = Complex(1,2)
+b = Complex(2,1)
+
+c = Complex(real = 1)
+d = Complex(imaginary = 1)
 
 print(c.real, c.imaginary)
 print(d.real, d.imaginary)
+
+c /= d
+
+print(c.real, c.imaginary)
 
 a *= b
 
